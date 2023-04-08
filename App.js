@@ -7,7 +7,7 @@ const Header = () => {
       <div className="logo container">
         <img
           className="logo"
-          src="https://www.designmantic.com/images/industry/beverage/dm-food-logo-09.png"
+          src="https://img.freepik.com/premium-vector/fresh-food-vector-design-logo_518759-168.jpg?w=2000"
         />
       </div>
       <div className="nav-items">
