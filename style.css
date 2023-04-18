@@ -2,7 +2,6 @@
   display: flex;
   justify-content: space-between;
   border: 0.5px solid black;
-  background-color: #fff;
 }
 .logo {
   display: flex;
@@ -28,13 +27,23 @@
 }
 .res-card:hover {
   cursor: pointer;
-  border: 1px solid gray;
+  border: 1px solid black;
 }
 .res-logo {
   margin: 5px;
   width: 90%;
 }
+.dynamic-ui {
+  display: flex;
+  justify-content: space-between;
+}
+.search-container {
+  margin: 10px;
+  cursor: pointer;
+}
 .filter-btn {
   margin: 10px;
   cursor: pointer;
+  text-align: right;
+  border: 0;
 }
