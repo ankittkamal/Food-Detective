@@ -1,10 +1,10 @@
 import RestaurantCard from "./RestaurantCard";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import resList from "../utils/mockData";
 
 function filterData(searchInput, listOfRestaurants) {
   const filterSearchData = listOfRestaurants.filter((rest) =>
-    rest.data.name.includes(searchInput)
+    rest?.data?.name?.toLowerCase()?.includes(searchInput.toLowerCase())
   );
   return filterSearchData;
 }
@@ -16,7 +16,22 @@ const Body = () => {
 
   const [listOfRestaurants, setListOfRestaurant] = useState(resList);
   const [searchInput, setSearchInput] = useState("");
+  // callback function and dependency array
+  useEffect(() => {
+    //API call
+    getRestaurants();
+  }, []);
 
+  async function getRestaurants() {
+    const data = await fetch(
+      "https://www.swiggy.com/dapi/restaurants/list/v5?lat=28.7040592&lng=77.10249019999999&page_type=DESKTOP_WEB_LISTING"
+    );
+    const json = await data.json();
+    console.log(json);
+    //optional chaining
+    setListOfRestaurant(json?.data?.cards[2]?.data?.data?.cards);
+  }
+  console.log("rendered");
   return (
     <div className="body">
       <div className="dynamic-ui">
