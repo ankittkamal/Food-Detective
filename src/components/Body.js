@@ -1,9 +1,11 @@
 import RestaurantCard from "./RestaurantCard";
 import { useState, useEffect } from "react";
 import resList from "../utils/mockData";
+import Shimmer from "./Shimmer";
+import { Link } from "react-router-dom";
 
-function filterData(searchInput, listOfRestaurants) {
-  const filterSearchData = listOfRestaurants.filter((rest) =>
+function filterData(searchInput, listOfFilteredRestaurants) {
+  const filterSearchData = listOfFilteredRestaurants.filter((rest) =>
     rest?.data?.name?.toLowerCase()?.includes(searchInput.toLowerCase())
   );
   return filterSearchData;
@@ -13,10 +15,11 @@ const Body = () => {
   //Normal js variable
   // state vriable
   //Recct hooks , state, useState
-
-  const [listOfRestaurants, setListOfRestaurant] = useState(resList);
+  const [allRestaurants, setAllRestaurants] = useState([]);
+  const [listOfFilteredRestaurants, setListOfFilteredRestaurant] = useState([]);
   const [searchInput, setSearchInput] = useState("");
-  // callback function and dependency array
+
+  // useEffect takes two parameter callback function and dependency array
   useEffect(() => {
     //API call
     getRestaurants();
@@ -29,10 +32,22 @@ const Body = () => {
     const json = await data.json();
     console.log(json);
     //optional chaining
-    setListOfRestaurant(json?.data?.cards[2]?.data?.data?.cards);
+    setAllRestaurants(json?.data?.cards[2]?.data?.data?.cards);
+    setListOfFilteredRestaurant(json?.data?.cards[2]?.data?.data?.cards);
   }
-  console.log("rendered");
-  return (
+  //Conditional rendering
+  // if restaurant is empty then we load using shimmer UI
+  //if res has data than load actual data UI
+
+  //early return no render
+  if (!allRestaurants) return null;
+
+  // if (listOfFilteredRestaurants?.length === 0)
+  //   return <h1>No restaurant match found</h1>;
+
+  return allRestaurants?.length === 0 ? (
+    <Shimmer />
+  ) : (
     <div className="body">
       <div className="dynamic-ui">
         <div className="search-container">
@@ -50,9 +65,9 @@ const Body = () => {
             className="search-btn"
             onClick={(e) => {
               //filter data
-              const data = filterData(searchInput, listOfRestaurants);
+              const data = filterData(searchInput, allRestaurants);
               // update the state
-              setListOfRestaurant(data);
+              setListOfFilteredRestaurant(data);
             }}
           >
             Search
@@ -63,10 +78,10 @@ const Body = () => {
             className="filter-btn"
             onClick={() => {
               //filter logic
-              const filteredList = listOfRestaurants.filter(
+              const filteredList = listOfFilteredRestaurants.filter(
                 (res) => res.data.avgRating > 4
               );
-              setListOfRestaurant(filteredList);
+              setListOfFilteredRestaurant(filteredList);
             }}
           >
             Top Ratad Restaurant
@@ -74,9 +89,13 @@ const Body = () => {
         </div>
       </div>
       <div className="Restaurant-container">
-        {listOfRestaurants.map((restaurant) => (
-          <RestaurantCard key={restaurant.data.id} resData={restaurant} />
-        ))}
+        {listOfFilteredRestaurants.map((restaurant) => {
+          return (
+            <Link to={"/Restaurant/" + restaurant.data.id}>
+              <RestaurantCard key={restaurant.data.id} resData={restaurant} />
+            </Link>
+          );
+        })}
       </div>
     </div>
   );

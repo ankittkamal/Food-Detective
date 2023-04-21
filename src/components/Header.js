@@ -1,18 +1,35 @@
-import { LOGO_URL } from "../utils/constants";
+import { useState } from "react";
+import Logo from "../assets/img/Food_Detective.png";
+import { Link } from "react-router-dom";
+
 const Header = () => {
+  const [isLoggedIn, setisLoggedIn] = useState(false);
+
   return (
     <div className="header">
       <div className="logo container">
-        <img className="logo" src={LOGO_URL} />
+        <img className="logo" src={Logo} />
       </div>
       <div className="nav-items">
         <ul>
-          <li>Home</li>
-          <li>About us</li>
-          <li>Contact</li>
+          <li>
+            <Link to="/">Home </Link>
+          </li>
+          <li>
+            <Link to="/About">About Us</Link>
+          </li>
+
+          <li>
+            <Link to="/Contact">Contact</Link>
+          </li>
           <li>Cart</li>
         </ul>
       </div>
+      {isLoggedIn ? (
+        <button onClick={() => setisLoggedIn(false)}>Logout</button>
+      ) : (
+        <button onClick={() => setisLoggedIn(true)}>Login</button>
+      )}
     </div>
   );
 };

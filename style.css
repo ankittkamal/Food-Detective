@@ -5,7 +5,7 @@
 }
 .logo {
   display: flex;
-  width: 100px;
+  width: 120px;
 }
 .nav-items > ul {
   font-size: 20px;
@@ -24,6 +24,7 @@
   margin: 5px;
   padding: 5px;
   width: 180px;
+  height: 360px;
 }
 .res-card:hover {
   cursor: pointer;
@@ -46,4 +47,18 @@
   cursor: pointer;
   text-align: right;
   border: 0;
+}
+.Shimmer-Card {
+  margin: 5px;
+  padding: 5px;
+  width: 180px;
+  height: 350px;
+  background-color: lightgray;
+}
+.restaurant-menu {
+  display: flex;
+  justify-content: space-between;
+}
+.item-img {
+  width: 500px;
 }
