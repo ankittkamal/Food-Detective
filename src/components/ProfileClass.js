@@ -3,25 +3,34 @@ class Profile extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      count: 0,
+      userInfo: {
+        name: "as",
+        location: "addAbortSignal",
+        twitter_username: "asdd",
+        public_repos: "wef",
+      },
     };
+  }
+
+  async componentDidMount() {
+    //API Calls
+    const data = await fetch("https://api.github.com/users/ankittkamal");
+
+    const json = await data.json();
+    this.setState({
+      userInfo: json,
+    });
   }
 
   render() {
     return (
       <div>
         <h1> This is my profile page</h1>
-        <h2>Name: {this.props.Name}</h2>
-        <h2>Count: {this.state.count}</h2>
-        <button
-          onClick={() => {
-            this.setState({
-              count: 1,
-            });
-          }}
-        >
-          SetCount
-        </button>
+        <img src={this.state.userInfo.avatar_url} />
+        <h2>Name: {this.state.userInfo.name}</h2>
+        <h2>location: {this.state.userInfo.location}</h2>
+        <h2>twitter_username: {this.state.userInfo.twitter_username}</h2>
+        <h2>public_repos: {this.state.userInfo.public_repos}</h2>
       </div>
     );
   }
