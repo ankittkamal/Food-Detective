@@ -6,34 +6,38 @@ const Header = () => {
   const [isLoggedIn, setisLoggedIn] = useState(false);
 
   return (
-    <div className="header">
+    <div className="flex justify-between bg-orange-50 shadow-lg text-base font-semibold leading-7 text-gray-900">
       <div className="logo container">
-        <img className="logo" src={Logo} />
+        <img className="h-28 p-2" src={Logo} />
       </div>
       <div className="nav-items">
-        <ul>
-          <li>
+        <ul className="flex py-10 ">
+          <li className="px-2 ">
             <Link to="/">Home </Link>
           </li>
-          <li>
-            <Link to="/About">About Us</Link>
+          <li className="px-2">
+            <Link to="/About">AboutUs</Link>
           </li>
 
-          <li>
+          <li className="px-2">
             <Link to="/Contact">Contact</Link>
           </li>
-          <li>
+          <li className="px-2">
             <Link to="/InstaMart"> InstaMart</Link>
           </li>
-          <li>
+          <li className="px-2">
             <Link to="/Cart">Cart</Link>
           </li>
         </ul>
       </div>
       {isLoggedIn ? (
-        <button onClick={() => setisLoggedIn(false)}>Logout</button>
+        <button className="flex py-10" onClick={() => setisLoggedIn(false)}>
+          Logout
+        </button>
       ) : (
-        <button onClick={() => setisLoggedIn(true)}>Login</button>
+        <button className="flex py-10 pr-3" onClick={() => setisLoggedIn(true)}>
+          Login
+        </button>
       )}
     </div>
   );

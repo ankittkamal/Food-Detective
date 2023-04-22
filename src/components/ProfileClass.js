@@ -24,8 +24,8 @@ class Profile extends React.Component {
 
   render() {
     return (
-      <div>
-        <h1> This is my profile page</h1>
+      <div className="flex p-4 m-5 justify-evenly">
+        <h1 className=" font-bold"> This is my profile page</h1>
         <img src={this.state.userInfo.avatar_url} />
         <h2>Name: {this.state.userInfo.name}</h2>
         <h2>location: {this.state.userInfo.location}</h2>

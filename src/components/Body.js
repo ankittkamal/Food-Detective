@@ -49,11 +49,11 @@ const Body = () => {
     <Shimmer />
   ) : (
     <div className="body">
-      <div className="dynamic-ui">
-        <div className="search-container">
+      <div className="dynamic-ui flex justify-between ">
+        <div className="search-container p-3 bg-slate-100 my-2 flex justify-start ">
           <input
             type="text"
-            className="search-input"
+            className="search-input rounded-xl p-2 m-1"
             placeholder="Search"
             value={searchInput}
             onChange={(e) => {
@@ -62,7 +62,7 @@ const Body = () => {
             }}
           />
           <button
-            className="search-btn"
+            className="m-2 p-1 hover:bg-gray-200 bg-white  rounded-2xl"
             onClick={(e) => {
               //filter data
               const data = filterData(searchInput, allRestaurants);
@@ -73,9 +73,9 @@ const Body = () => {
             Search
           </button>
         </div>
-        <div className="filter">
+        <div className="filter p-5 flex justify-end">
           <button
-            className="filter-btn"
+            className="filter-btn bg-orange-100 rounded-xl"
             onClick={() => {
               //filter logic
               const filteredList = listOfFilteredRestaurants.filter(
@@ -88,7 +88,7 @@ const Body = () => {
           </button>
         </div>
       </div>
-      <div className="Restaurant-container">
+      <div className="Restaurant-container flex flex-wrap">
         {listOfFilteredRestaurants.map((restaurant) => {
           return (
             <Link to={"/Restaurant/" + restaurant.data.id}>
