@@ -22,7 +22,12 @@ const Header = () => {
           <li>
             <Link to="/Contact">Contact</Link>
           </li>
-          <li>Cart</li>
+          <li>
+            <Link to="/InstaMart"> InstaMart</Link>
+          </li>
+          <li>
+            <Link to="/Cart">Cart</Link>
+          </li>
         </ul>
       </div>
       {isLoggedIn ? (

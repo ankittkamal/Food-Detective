@@ -5,10 +5,9 @@ import Shimmer from "./Shimmer";
 import useRestaurant from "../utils/useRestaurant";
 
 const RestaurantMenu = () => {
-  const params = useParams();
   const { resid } = useParams();
 
-  const [restaurants, resmenu] = useRestaurant(resid); // CUSTOM HOOK
+  const [restaurants, resmenu] = useRestaurant(resid); // CUSTOM HOOK which will fetch the restaurant menu data of resid and send
 
   const { name, avgRating, cloudinaryImageId, city, costForTwoMessage } =
     restaurants;

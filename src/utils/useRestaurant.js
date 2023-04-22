@@ -1,11 +1,11 @@
 import React from "react";
 import { useState, useEffect } from "react";
-// CUSTOM HOOK
+// CUSTOM HOOK which will fetch the restaurant menu data and send
 
 const useRestaurant = (resid) => {
   const [restaurants, setRestaurants] = useState([{}]);
   const [resmenu, setResMenu] = useState([{}]);
-
+  //Get data from API
   useEffect(() => {
     getRestaurantsID();
   }, []);
@@ -18,9 +18,9 @@ const useRestaurant = (resid) => {
     );
     const json = await data.json();
     console.log(json);
-    setRestaurants(json.data?.cards[0]?.card?.card?.info); //47589
+    setRestaurants(json?.data?.cards[0]?.card?.card?.info); //60445
     // console.log(restaurants);
-    setResMenu(json.data?.cards[2]);
+    setResMenu(json?.data?.cards[2]);
     // console.log(resmenu);
   }
 
