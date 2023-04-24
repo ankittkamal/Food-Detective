@@ -1,26 +1,37 @@
-import React, { lazy, Suspense } from "react";
+import React, { lazy, Suspense, useState } from "react";
 import ReactDOM from "react-dom/client";
-import Header from "./components/header";
+import Header from "./components/Header";
 import Body from "./components/Body";
 import Shimmer from "./components/Shimmer";
-//import About from "./components/About";
+//import About from "./components/About"; using from lazy loading
 import Error from "./components/Error";
 import Contact from "./components/Contact";
 import RestaurantMenu from "./components/RestaurantMenu";
 import Profile from "./components/ProfileClass";
+import userContext from "./utils/userContext";
+import { Provider } from "react-redux";
+import store from "./utils/store";
 import { createBrowserRouter, RouterProvider, Outlet } from "react-router-dom";
 
 const About = lazy(() => import("./components/About")); // chunking, lazyLoading
 
-const InstaMart = lazy(() => import("./components/InstaMart")); //lazy loading
+const FoodMart = lazy(() => import("./components/FoodMart")); //lazy loading
 
 const Cart = lazy(() => import("./components/Cart"));
+
 const AppLayout = () => {
+  const [user, setuser] = useState({
+    name: "Ankit",
+    email: "abc@gmail.com",
+  });
+
   return (
-    <div className="App">
-      <Header />
-      <Outlet />
-    </div>
+    <Provider store={store}>
+      <userContext.Provider value={user}>
+        <Header />
+        <Outlet />
+      </userContext.Provider>
+    </Provider>
   );
 };
 
@@ -57,10 +68,10 @@ const appRouter = createBrowserRouter([
         element: <RestaurantMenu />,
       },
       {
-        path: "/InstaMart",
+        path: "/FoodMart",
         element: (
           <Suspense fallback={<Shimmer />}>
-            <InstaMart />
+            <FoodMart />
           </Suspense>
         ),
       },

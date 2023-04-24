@@ -13,7 +13,7 @@ const RestaurantCard = (props) => {
   } = resData?.data;
 
   return (
-    <div className="res-card w-56 p-2 m-2 shadow-lg bg-gray-50">
+    <div className="res-card w-56 p-2 m-2 shadow-lg bg-slate-100">
       <img
         className="res-logo"
         alt="res-logo"
@@ -21,10 +21,15 @@ const RestaurantCard = (props) => {
       />
 
       <h3 className="font-bold text-xl:">{name}</h3>
-      <h5 className=" font-light"> {cuisines.join(", ")}</h5>
-      <h5 className=" font-light">{avgRating} stars</h5>
-      <h5 className=" font-light">₹{costForTwo / 100} For Two</h5>
-      <h5 className=" font-light">Delivery Time: {deliveryTime} minutes</h5>
+      <h5 className=" text-sm font-extralight "> {cuisines.join(", ")}</h5>
+
+      <ul className="flex p-1">
+        <li className="  text-sm font-light m-1">✩ {avgRating} stars</li>
+        <li className=" text-sm font-light m-1  ">
+          ₹{costForTwo / 100} For Two
+        </li>
+        <li className=" text-sm font-light m-1">{deliveryTime} MINS</li>
+      </ul>
     </div>
   );
 };

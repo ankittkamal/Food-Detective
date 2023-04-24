@@ -22,7 +22,7 @@ const Body = () => {
 
   async function getRestaurants() {
     const data = await fetch(
-      "https://www.swiggy.com/dapi/restaurants/list/v5?lat=28.7040592&lng=77.10249019999999&page_type=DESKTOP_WEB_LISTING"
+      "https://www.swiggy.com/dapi/restaurants/list/v5?lat=23.022505&lng=72.5713621&page_type=DESKTOP_WEB_LISTING"
     );
     const json = await data.json();
     console.log(json);
@@ -50,7 +50,7 @@ const Body = () => {
   ) : (
     <div className="body">
       <div className="dynamic-ui flex justify-between ">
-        <div className="search-container p-3 bg-slate-100 my-2 flex justify-start ">
+        <div className="search-container m-2 p-4 bg-slate-100 my-2 flex justify-start rounded-xl ">
           <input
             type="text"
             className="search-input rounded-xl p-2 m-1"
@@ -75,7 +75,7 @@ const Body = () => {
         </div>
         <div className="filter p-5 flex justify-end">
           <button
-            className="filter-btn bg-orange-100 rounded-xl"
+            className="filter-btn bg-red-300 m-2 p-2 rounded-xl"
             onClick={() => {
               //filter logic
               const filteredList = listOfFilteredRestaurants.filter(
@@ -91,8 +91,8 @@ const Body = () => {
       <div className="Restaurant-container flex flex-wrap">
         {listOfFilteredRestaurants.map((restaurant) => {
           return (
-            <Link to={"/Restaurant/" + restaurant.data.id}>
-              <RestaurantCard key={restaurant.data.id} resData={restaurant} />
+            <Link to={"/Restaurant/" + restaurant?.data?.id}>
+              <RestaurantCard key={restaurant?.data?.id} resData={restaurant} />
             </Link>
           );
         })}
