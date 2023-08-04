@@ -12,7 +12,7 @@ const useRestaurant = (resid) => {
 
   async function getRestaurantsID() {
     const data = await fetch(
-      "https://www.swiggy.com/dapi/menu/pl?page-type=REGULAR_MENU&complete-menu=true&lat=23.022505&lng=72.5713621&restaurantId=" +
+      "https://www.swiggy.com/dapi/menu/pl?page-type=REGULAR_MENU&complete-menu=true&lat=19.0759837&lng=72.8776559&restaurantId=" +
         resid +
         "&submitAction=ENTER"
     );
